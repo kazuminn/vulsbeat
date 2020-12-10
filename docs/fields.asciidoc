@@ -9174,6 +9174,20 @@ alias to: process.executable
 None
 
 
+*`jsonVersion`*::
++
+--
+type: long
+
+--
+
+*`lang`*::
++
+--
+type: keyword
+
+--
+
 *`results`*::
 +
 --
