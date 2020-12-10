@@ -63,18 +63,25 @@ func (bt *vulsbeat) Run(b *beat.Beat) error {
 		results = append(results, result)
 	}
 
-	event := beat.Event{
-		Timestamp: time.Now(),
-		Fields: common.MapStr{
-			"jsonVersion": 2,
-			"lang": "japanese",
-			"results": results,
-		},
-	}
-	bt.client.Publish(event)
-	logp.Info("Event sent")
+	ticker := time.NewTicker(bt.config.Period)
+	for {
+		select {
+		case <-bt.done:
+			return nil
+		case <-ticker.C:
+		}
 
-	return nil
+		event := beat.Event{
+			Timestamp: time.Now(),
+			Fields: common.MapStr{
+				"type":    b.Info.Name,
+			"lang": "japanese",
+				"results": results,
+			},
+		}
+		bt.client.Publish(event)
+		logp.Info("Event sent")
+	}
 }
 
 // Stop stops vulsbeat.
