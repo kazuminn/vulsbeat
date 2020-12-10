@@ -2,8 +2,6 @@
   title: vulsbeat
   description:
   fields:
-    - name: counter
-      type: long
+    - name: results 
+      type: nested 
       required: true
-      description: >
-        PLEASE UPDATE DOCUMENTATION

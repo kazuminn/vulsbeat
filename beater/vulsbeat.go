@@ -66,7 +66,6 @@ func (bt *vulsbeat) Run(b *beat.Beat) error {
 	event := beat.Event{
 		Timestamp: time.Now(),
 		Fields: common.MapStr{
-			"type":    b.Info.Name,
 			"results": results,
 		},
 	}
