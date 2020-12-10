@@ -43,7 +43,7 @@ setup.kibana:
   # Scheme and port can be left out and will be set to the default (http and 5601)
   # In case you specify and additional path, the scheme is required: http://localhost:5601/path
   # IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
-  #host: "localhost:5601"
+  host: "localhost:5601"
 
   # Kibana Space ID
   # ID of the Kibana Space into which the dashboards should be loaded. By default,
@@ -77,8 +77,8 @@ output.elasticsearch:
 
   # Authentication credentials - either API key or username/password.
   #api_key: "id:api_key"
-  #username: "elastic"
-  #password: "changeme"
+  username: "elastic"
+  password: "changeme"
 
 # ------------------------------ Logstash Output -------------------------------
 #output.logstash:
@@ -101,15 +101,20 @@ output.elasticsearch:
 
 processors:
   - add_host_metadata: ~
-  - add_cloud_metadata: ~
-  - add_docker_metadata: ~
+  #- add_cloud_metadata: ~
+  #- add_docker_metadata: ~
 
 
 # ================================== Logging ===================================
 
 # Sets log level. The default log level is info.
 # Available log levels are: error, warning, info, debug
-#logging.level: debug
+logging.level: info
+logging.to_file: true
+logging.file:
+    path: /var/log/vulsbeat
+    name: vulsbeat
+    permission: 0644 
 
 # At debug level, you can selectively enable logging only for some components.
 # To enable all selectors use ["*"]. Examples of other selectors are "beat",

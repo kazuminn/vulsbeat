@@ -47,7 +47,7 @@ func (bt *vulsbeat) Run(b *beat.Beat) error {
 		return err
 	}
 
-	files := dirwalk("~/vuls/results/")
+	files := dirwalk("/home/a/vuls/results/")
 
 	results := models.ScanResults{}
 	for _, file := range files {
