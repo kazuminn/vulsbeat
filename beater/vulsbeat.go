@@ -3,12 +3,17 @@ package beater
 import (
 	"fmt"
 	"time"
+	"io/ioutil"
+	"path/filepath"
+	"os"
+	"encoding/json"
 
 	"github.com/elastic/beats/v7/libbeat/beat"
 	"github.com/elastic/beats/v7/libbeat/common"
 	"github.com/elastic/beats/v7/libbeat/logp"
 
 	"github.com/kazuminn/vulsbeat/config"
+	"github.com/future-architect/vuls/models"
 )
 
 // vulsbeat configuration.
@@ -42,30 +47,56 @@ func (bt *vulsbeat) Run(b *beat.Beat) error {
 		return err
 	}
 
-	ticker := time.NewTicker(bt.config.Period)
-	counter := 1
-	for {
-		select {
-		case <-bt.done:
-			return nil
-		case <-ticker.C:
-		}
+	files := dirwalk("~/vuls/results/")
 
-		event := beat.Event{
-			Timestamp: time.Now(),
-			Fields: common.MapStr{
-				"type":    b.Info.Name,
-				"counter": counter,
-			},
-		}
-		bt.client.Publish(event)
-		logp.Info("Event sent")
-		counter++
+	results := models.ScanResults{}
+	for _, file := range files {
+		raw, err := ioutil.ReadFile(file)
+ 	    if err != nil {
+    	    fmt.Println(err.Error())
+        	os.Exit(1)
+    	}
+
+    	var result models.ScanResult 
+    	json.Unmarshal(raw, &result)
+
+		results = append(results, result)
 	}
+
+	event := beat.Event{
+		Timestamp: time.Now(),
+		Fields: common.MapStr{
+			"type":    b.Info.Name,
+			"results": results,
+		},
+	}
+	bt.client.Publish(event)
+	logp.Info("Event sent")
+
+	return nil
 }
 
 // Stop stops vulsbeat.
 func (bt *vulsbeat) Stop() {
 	bt.client.Close()
 	close(bt.done)
+}
+
+func dirwalk(dir string) []string {
+    files, err := ioutil.ReadDir(dir)
+    if err != nil {
+        panic(err)
+	}
+	
+
+    var paths []string
+    for _, file := range files {
+        if file.IsDir() {
+            paths = append(paths, dirwalk(filepath.Join(dir, file.Name()))...)
+            continue
+        }
+        paths = append(paths, filepath.Join(dir, file.Name()))
+    }
+
+    return paths
 }

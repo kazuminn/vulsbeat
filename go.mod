@@ -28,6 +28,7 @@ require (
 	github.com/elastic/beats/v7 v7.0.0-alpha2.0.20201209222322-cc2dd9f826f4
 	github.com/elastic/go-sysinfo v1.4.0 // indirect
 	github.com/fatih/color v1.10.0 // indirect
+	github.com/future-architect/vuls v0.13.7
 	github.com/go-sourcemap/sourcemap v2.1.3+incompatible // indirect
 	github.com/gophercloud/gophercloud v0.1.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
