@@ -2,6 +2,10 @@
   title: vulsbeat
   description:
   fields:
+    - name: jsonVersion 
+      type: long 
+    - name: lang  
+      type: keyword 
     - name: results 
       type: nested 
       required: true
