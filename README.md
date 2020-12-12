@@ -1,6 +1,6 @@
 # vulsbeat
 
-Welcome to vulsbeat.
+Welcome to vulsbeat.Please push Star.
 
 This software allows you Vulnerability scan results of [vuls](https://github.com/future-architect/vuls) can be imported to Elastic Stack.
 You can do various things with elasticsearch. For example, analyze or detect complex threats with SIEM.
