@@ -2,6 +2,10 @@
 
 Welcome to vulsbeat.
 
+This software allows you to: Vulnerability scan results of vuls can be imported to Elastic Stack.
+You can do various things with elasticsearch. For example, analyze or detect complex threats with SIEM.
+
+
 Ensure that this folder is at the following location:
 `${GOPATH}/src/github.com/kazuminn/vulsbeat`
 
