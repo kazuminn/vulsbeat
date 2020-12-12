@@ -47,7 +47,7 @@ func (bt *vulsbeat) Run(b *beat.Beat) error {
 		return err
 	}
 
-	files := bt.dirwalk(bt.config.Paths)
+	files := bt.dirwalk(bt.config.Path)
 
 	results := models.ScanResults{}
 	for _, file := range files {
@@ -73,12 +73,10 @@ func (bt *vulsbeat) Run(b *beat.Beat) error {
 	bt.client.Publish(event)
 	logp.Info("Event sent")
 
-	for {
 		select {
 		case <-bt.done:
 			return nil
 		}
-	}
 }
 
 // Stop stops vulsbeat.
@@ -88,7 +86,7 @@ func (bt *vulsbeat) Stop() {
 }
 
 func (bt *vulsbeat) dirwalk(dir string) []string {
-	files, err := ioutil.ReadDir(bt.config.Paths)
+	files, err := ioutil.ReadDir(bt.config.Path)
 	if err != nil {
 		panic(err)
 	}
@@ -96,7 +94,7 @@ func (bt *vulsbeat) dirwalk(dir string) []string {
 	var paths []string
 	for _, file := range files {
 		if file.IsDir() {
-			if file.Name() == filepath.Join(bt.config.Paths, "current") {
+			if file.Name() == filepath.Join(bt.config.Path, "current") {
 				continue
 			}
 			paths = append(paths, bt.dirwalk(filepath.Join(dir, file.Name()))...)

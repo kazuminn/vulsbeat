@@ -9,9 +9,10 @@ import (
 
 type Config struct {
 	Period time.Duration `config:"period"`
-	Paths string `config:"paths"`
+	Path string `config:"path"`
 }
 
 var DefaultConfig = Config{
 	Period: 1 * time.Second,
+	Path "",
 }
