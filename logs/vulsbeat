@@ -1,0 +1,37 @@
+2020-12-12T21:55:15.122+0900	INFO	instance/beat.go:647	Home path: [/home/a/go/src/github.com/kazuminn/vulsbeat] Config path: [/home/a/go/src/github.com/kazuminn/vulsbeat] Data path: [/home/a/go/src/github.com/kazuminn/vulsbeat/data] Logs path: [/home/a/go/src/github.com/kazuminn/vulsbeat/logs]
+2020-12-12T21:55:15.122+0900	INFO	instance/beat.go:655	Beat ID: cade4504-e8d9-4926-9402-cebdb84c8269
+2020-12-12T21:55:15.125+0900	INFO	[seccomp]	seccomp/seccomp.go:124	Syscall filter successfully installed
+2020-12-12T21:55:15.125+0900	INFO	[beat]	instance/beat.go:976	Beat info	{"system_info": {"beat": {"path": {"config": "/home/a/go/src/github.com/kazuminn/vulsbeat", "data": "/home/a/go/src/github.com/kazuminn/vulsbeat/data", "home": "/home/a/go/src/github.com/kazuminn/vulsbeat", "logs": "/home/a/go/src/github.com/kazuminn/vulsbeat/logs"}, "type": "vulsbeat", "uuid": "cade4504-e8d9-4926-9402-cebdb84c8269"}}}
+2020-12-12T21:55:15.125+0900	INFO	[beat]	instance/beat.go:985	Build info	{"system_info": {"build": {"commit": "94c33d0ff32081c4387bbc6b3509943ac710f9f8", "libbeat": "8.0.0", "time": "2020-12-12T12:49:12.000Z", "version": "8.0.0"}}}
+2020-12-12T21:55:15.125+0900	INFO	[beat]	instance/beat.go:988	Go runtime info	{"system_info": {"go": {"os":"linux","arch":"amd64","max_procs":2,"version":"go1.15.6"}}}
+2020-12-12T21:55:15.126+0900	INFO	[beat]	instance/beat.go:992	Host info	{"system_info": {"host": {"architecture":"x86_64","boot_time":"2020-12-12T21:06:57+09:00","containerized":false,"name":"a-iMac","ip":["127.0.0.1/8","::1/128","192.168.1.22/24","fe80::768b:2fb1:ef06:838b/64","172.18.0.1/16","fe80::42:a8ff:fe36:ef77/64","172.17.0.1/16","fe80::60bc:65ff:fe68:14f5/64","fe80::1cd0:d2ff:fe3c:26f6/64"],"kernel_version":"4.15.0-123-generic","mac":["64:b9:e8:c8:4d:ea","d4:9a:20:59:ea:25","02:42:a8:36:ef:77","02:42:58:64:16:3b","62:bc:65:68:14:f5","1e:d0:d2:3c:26:f6"],"os":{"family":"debian","platform":"ubuntu","name":"Ubuntu","version":"18.04.1 LTS (Bionic Beaver)","major":18,"minor":4,"patch":1,"codename":"bionic"},"timezone":"JST","timezone_offset_sec":32400,"id":"a426e9b0cf4d4bdd98e519e9300f75ad"}}}
+2020-12-12T21:55:15.126+0900	INFO	[beat]	instance/beat.go:1021	Process info	{"system_info": {"process": {"capabilities": {"inheritable":null,"permitted":null,"effective":null,"bounding":["chown","dac_override","dac_read_search","fowner","fsetid","kill","setgid","setuid","setpcap","linux_immutable","net_bind_service","net_broadcast","net_admin","net_raw","ipc_lock","ipc_owner","sys_module","sys_rawio","sys_chroot","sys_ptrace","sys_pacct","sys_admin","sys_boot","sys_nice","sys_resource","sys_time","sys_tty_config","mknod","lease","audit_write","audit_control","setfcap","mac_override","mac_admin","syslog","wake_alarm","block_suspend","audit_read"],"ambient":null}, "cwd": "/home/a/go/src/github.com/kazuminn/vulsbeat", "exe": "/home/a/go/src/github.com/kazuminn/vulsbeat/vulsbeat", "name": "vulsbeat", "pid": 6635, "ppid": 2116, "seccomp": {"mode":"filter","no_new_privs":true}, "start_time": "2020-12-12T21:55:14.110+0900"}}}
+2020-12-12T21:55:15.126+0900	INFO	instance/beat.go:302	Setup Beat: vulsbeat; Version: 8.0.0
+2020-12-12T21:55:15.126+0900	INFO	[index-management]	idxmgmt/std.go:184	Set output.elasticsearch.index to 'vulsbeat-8.0.0' as ILM is enabled.
+2020-12-12T21:55:15.126+0900	INFO	eslegclient/connection.go:99	elasticsearch url: http://localhost:9200
+2020-12-12T21:55:15.127+0900	INFO	[publisher]	pipeline/module.go:113	Beat name: a-iMac
+2020-12-12T21:55:15.127+0900	INFO	[monitoring]	log/log.go:117	Starting metrics logging every 30s
+2020-12-12T21:55:15.127+0900	INFO	instance/beat.go:466	vulsbeat start running.
+2020-12-12T21:55:15.127+0900	INFO	beater/vulsbeat.go:42	vulsbeat is running! Hit CTRL-C to stop it.
+2020-12-12T21:55:18.124+0900	INFO	[add_cloud_metadata]	add_cloud_metadata/add_cloud_metadata.go:101	add_cloud_metadata: hosting provider type not detected.
+2020-12-12T21:55:18.124+0900	INFO	beater/vulsbeat.go:80	Event sent
+2020-12-12T21:55:19.125+0900	INFO	[publisher_pipeline_output]	pipeline/output.go:143	Connecting to backoff(elasticsearch(http://localhost:9200))
+2020-12-12T21:55:19.125+0900	INFO	[publisher]	pipeline/retry.go:219	retryer: send unwait signal to consumer
+2020-12-12T21:55:19.125+0900	INFO	[publisher]	pipeline/retry.go:223	  done
+2020-12-12T21:55:19.130+0900	INFO	[esclientleg]	eslegclient/connection.go:314	Attempting to connect to Elasticsearch version 7.9.3
+2020-12-12T21:55:19.133+0900	INFO	[esclientleg]	eslegclient/connection.go:314	Attempting to connect to Elasticsearch version 7.9.3
+2020-12-12T21:55:19.172+0900	INFO	[index-management]	idxmgmt/std.go:261	Auto ILM enable success.
+2020-12-12T21:55:19.174+0900	INFO	[index-management.ilm]	ilm/std.go:139	do not generate ilm policy: exists=true, overwrite=false
+2020-12-12T21:55:19.174+0900	INFO	[index-management]	idxmgmt/std.go:274	ILM policy successfully loaded.
+2020-12-12T21:55:19.174+0900	INFO	[index-management]	idxmgmt/std.go:407	Set setup.template.name to '{vulsbeat-8.0.0 {now/d}-000001}' as ILM is enabled.
+2020-12-12T21:55:19.174+0900	INFO	[index-management]	idxmgmt/std.go:412	Set setup.template.pattern to 'vulsbeat-8.0.0-*' as ILM is enabled.
+2020-12-12T21:55:19.174+0900	INFO	[index-management]	idxmgmt/std.go:446	Set settings.index.lifecycle.rollover_alias in template to {vulsbeat-8.0.0 {now/d}-000001} as ILM is enabled.
+2020-12-12T21:55:19.174+0900	INFO	[index-management]	idxmgmt/std.go:450	Set settings.index.lifecycle.name in template to {vulsbeat {"policy":{"phases":{"hot":{"actions":{"rollover":{"max_age":"30d","max_size":"50gb"}}}}}}} as ILM is enabled.
+2020-12-12T21:55:19.177+0900	INFO	[template_loader]	template/load.go:109	Template vulsbeat-8.0.0 already exists and will not be overwritten.
+2020-12-12T21:55:19.177+0900	INFO	[index-management]	idxmgmt/std.go:298	Loaded index template.
+2020-12-12T21:55:19.179+0900	INFO	[index-management]	idxmgmt/std.go:309	Write alias successfully generated.
+2020-12-12T21:55:19.181+0900	INFO	[publisher_pipeline_output]	pipeline/output.go:151	Connection to backoff(elasticsearch(http://localhost:9200)) established
+2020-12-12T21:55:34.254+0900	INFO	[monitoring]	log/log.go:152	Total non-zero metrics	{"monitoring": {"metrics": {"beat":{"cgroup":{"cpu":{"cfs":{"period":{"us":100000}},"id":"user.slice"},"cpuacct":{"id":"user.slice","total":{"ns":317802461290}},"memory":{"id":"user.slice","mem":{"limit":{"bytes":9223372036854771712},"usage":{"bytes":840794112}}}},"cpu":{"system":{"ticks":20,"time":{"ms":26}},"total":{"ticks":70,"time":{"ms":84},"value":0},"user":{"ticks":50,"time":{"ms":58}}},"handles":{"limit":{"hard":1048576,"soft":1024},"open":11},"info":{"ephemeral_id":"719b8a12-82d4-49d3-b667-97be73ac1854","uptime":{"ms":19155}},"memstats":{"gc_next":8609296,"memory_alloc":5561360,"memory_total":14127400,"rss":46604288},"runtime":{"goroutines":11}},"libbeat":{"config":{"module":{"running":0}},"output":{"events":{"acked":1,"active":0,"batches":1,"total":1},"read":{"bytes":2905},"type":"elasticsearch","write":{"bytes":62230}},"pipeline":{"clients":0,"events":{"active":0,"published":1,"retry":1,"total":1},"queue":{"acked":1}}},"system":{"cpu":{"cores":2},"load":{"1":1.2,"15":0.97,"5":1.19,"norm":{"1":0.6,"15":0.485,"5":0.595}}}}}}
+2020-12-12T21:55:34.254+0900	INFO	[monitoring]	log/log.go:153	Uptime: 19.156484043s
+2020-12-12T21:55:34.254+0900	INFO	[monitoring]	log/log.go:130	Stopping metrics logging.
+2020-12-12T21:55:34.255+0900	INFO	instance/beat.go:472	vulsbeat stopped.
