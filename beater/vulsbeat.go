@@ -47,10 +47,16 @@ func (bt *vulsbeat) Run(b *beat.Beat) error {
 		return err
 	}
 
-	files := bt.dirwalk(bt.config.Path)
+
+	jsonDirs := bt.dirwalk(bt.config.Path)
+
+	var jsonFiles []string
+	for _, dir := range jsonDirs[1:] {
+		jsonFiles = append(jsonFiles, bt.dirwalk(dir)...)
+	}
 
 	results := models.ScanResults{}
-	for _, file := range files {
+	for _, file := range jsonFiles {
 		raw, err := ioutil.ReadFile(file)
 		if err != nil {
 			fmt.Println(err.Error())
@@ -86,20 +92,13 @@ func (bt *vulsbeat) Stop() {
 }
 
 func (bt *vulsbeat) dirwalk(dir string) []string {
-	files, err := ioutil.ReadDir(bt.config.Path)
+	files, err := ioutil.ReadDir(dir)
 	if err != nil {
 		panic(err)
 	}
 
 	var paths []string
 	for _, file := range files {
-		if file.IsDir() {
-			if file.Name() == filepath.Join(bt.config.Path, "current") {
-				continue
-			}
-			paths = append(paths, bt.dirwalk(filepath.Join(dir, file.Name()))...)
-			continue
-		}
 		paths = append(paths, filepath.Join(dir, file.Name()))
 	}
 
