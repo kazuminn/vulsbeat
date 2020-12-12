@@ -11,6 +11,7 @@ Ensure that this folder is at the following location:
 
 * [Golang](https://golang.org/dl/) 1.7 later
 * [vuls](https://github.com/future-architect/vuls) v0.13.9 later
+* [mage](https://github.com/magefile/mage)
 
 ### Init Project
 To get running with vulsbeat and also install the
