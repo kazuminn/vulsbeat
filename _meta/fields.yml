@@ -2,8 +2,403 @@
   title: vulsbeat
   description:
   fields:
-    - name: lang  
-      type: keyword 
-    - name: results 
-      type: nested 
-      required: true
+    - name: result
+      type: group
+      re1uired: true 
+      fields:
+        - name: JSONVersion  
+          type: text 
+          required: true
+        - name: ServerUUID  
+          type: text 
+          required: true
+        - name: ServerName
+          type: text 
+          required: true
+        - name: Family 
+          type: text 
+          required: true
+        - name: Release 
+          type: text 
+          required: true
+        - name: Container 
+          type: nested 
+          required: true
+        - name: IPv4Addrs 
+          type: nested 
+          required: true
+        - name: IPv6Addrs 
+          type: nested 
+          required: true
+        - name: IPSIdentifiers 
+          type: nested 
+          required: true
+        - name: ScanedAt 
+          type: date 
+          required: true
+        - name: ScanMode
+          type: text 
+          required: true
+        - name: ScanedVersion
+          type: text 
+          required: true
+        - name: ScanedRevision
+          type: text 
+          required: true
+        - name: ReportedBy 
+          type: text 
+          required: true
+        - name: Errors 
+          type: nested 
+          required: true
+        - name: Warnings 
+          type: nested 
+          required: true
+        - name: ScannedCves 
+          type: nested 
+          required: true
+        - name: RunningKernel 
+          type: group 
+          required: true
+          fields:
+            - name: Release
+              type: text
+              required: true
+            - name: Version 
+              type: text
+              required: true
+            - name: RebootRequired 
+              type: bool 
+              required: true
+        - name: Packages 
+          type: nested 
+          required: true
+        - name: SrcPackages 
+          type: nested 
+          required: true
+        - name: WordPressPackages 
+          type: nested 
+          required: true
+        - name: LibraryScanners 
+          type: nested 
+          required: true
+        - name: CweDict 
+          type: nested 
+          required: true
+        - name: Optional 
+          type: nested 
+          required: true
+        - name: Config 
+          type: group
+          required: true
+          fields:
+            - name: Scan
+              type: group
+              required: true
+              fields:
+                - name: DebugSQL
+                  type: bool
+                  required: true
+                - name: Lang
+                  type: text
+                  required: true
+                - name: HTTPProxy 
+                  type: text
+                  required: true
+                - name: LogDir 
+                  type: text
+                  required: true
+                - name: ResultsDir 
+                  type: text
+                  required: true
+                - name: Pipe 
+                  type: bool
+                  required: true
+                - name: Quiet 
+                  type: bool
+                  required: true
+                - name: NoProgress 
+                  type: bool
+                  required: true
+                - name: Default 
+                  type: group 
+                  required: true
+                  fields:
+                    - name: ServerName
+                      type: text
+                      required: true
+                    - name: User 
+                      type: text
+                      required: true
+                    - name: Host 
+                      type: text
+                      required: true
+                    - name: JumpServer 
+                      type: text
+                      required: true
+                    - name: Port 
+                      type: text
+                      required: true
+                    - name: SSHConfigPath 
+                      type: text
+                      required: true
+                    - name: KeyPath 
+                      type: text
+                      required: true
+                    - name: KeyPassword 
+                      type: text
+                      required: true
+                    - name: CpeNames 
+                      type: nested 
+                      required: true
+                    - name: ScanMode 
+                      type: nexted 
+                      required: true
+                    - name: DependencyCheckXMLPath
+                      type: text 
+                      required: true
+                    - name: OwaspDCXMLPath 
+                      type: text 
+                      required: true
+                    - name: ContainersIncluded 
+                      type: nexted 
+                      required: true
+                    - name: ContainersExcluded 
+                      type: nexted 
+                      required: true
+                    - name: ContainerType 
+                      type: text 
+                      required: true
+                    - name: Containers 
+                      type: nexted 
+                      required: true
+                    - name: IgnoreCves 
+                      type: nexted 
+                      required: true
+                    - name: IgnorePkgsRegexp 
+                      type: nexted 
+                      required: true
+                    - name: GitHubRepos 
+                      type: nexted 
+                      required: true
+                    - name: UUIDs 
+                      type: nexted 
+                      required: true
+                    - name: Memo 
+                      type: text 
+                      required: true
+                    - name: Enablerepo 
+                      type: nested 
+                      required: true
+                    - name: Optional 
+                      type: nested 
+                      required: true
+                    - name: Lockfiles 
+                      type: nested 
+                      required: true
+                    - name: FindLock 
+                      type: bool 
+                      required: true
+                    - name: Type 
+                      type: text 
+                      required: true
+                    - name: WordPressConf 
+                      type: group 
+                      required: true
+                      fields:
+                    - name: IgnoredJSONKeys 
+                      type: nested 
+                      required: true
+                    - name: IPv4Addrs 
+                      type: nested 
+                      required: true
+                    - name: IPv6Addrs 
+                      type: nested 
+                      required: true
+                    - name: IPSIdentifiers 
+                      type: nested 
+                      required: true
+                    - name: LogMsgAnsiColor 
+                      type: text
+                      required: true
+                    - name: Container 
+                      type: group 
+                      required: true
+                      fields:
+                    - name: Distro 
+                      type: text
+                      required: true
+                      fields:
+                    - name: Mode 
+                      type: text
+                      required: true
+                      fields:
+                - name: Servers 
+                  type: nested 
+                  required: true
+                - name: CvessScoreOver 
+                  type: long
+                  required: true
+                - name: IgnoreUnscoredCves 
+                  type: bool
+                  required: true
+                - name: IgnoreUnfixed 
+                  type: bool
+                  required: true
+                - name: IgnoreGitHubDissmissed 
+                  type: bool
+                  required: true
+                - name: SSHNative 
+                  type: bool
+                  required: true
+                - name: SSHConfig 
+                  type: bool
+                  required: true
+                - name: ContainersOnly 
+                  type: bool
+                  required: true
+                - name: LibsOnly 
+                  type: bool
+                  required: true
+                - name: WordPressOnly 
+                  type: bool
+                  required: true
+                - name: CacheDBPath 
+                  type: text 
+                  required: true
+                - name: TrivyCacheDBDir 
+                  type: text 
+                  required: true
+                - name: SkipBroken 
+                  type: bool
+                  required: true
+                - name: Vvv 
+                  type: bool
+                  required: true
+                - name: UUID 
+                  type: bool
+                  required: true
+                - name: DetectIPS 
+                  type: bool
+                  required: true
+                - name: GoCveDictConf 
+                  type: group 
+                  required: true
+                - name: OvalDict 
+                  type: group 
+                  required: true
+                - name: Gost 
+                  type: group 
+                  required: true
+                - name: Exploit 
+                  type: group 
+                  required: true
+                - name: Metasploit 
+                  type: group 
+                  required: true
+                - name: Slack 
+                  type: group 
+                  required: true
+                - name: EMail 
+                  type: group 
+                  required: true
+                - name: HTTP 
+                  type: group 
+                  required: true
+                - name: Syslog 
+                  type: group 
+                  required: true
+                - name: AWS 
+                  type: group 
+                  required: true
+                - name: Azure 
+                  type: group 
+                  required: true
+                - name: Stride 
+                  type: group 
+                  required: true
+                - name: HipChat 
+                  type: group 
+                  required: true
+                - name: ChatWork 
+                  type: group 
+                  required: true
+                - name: Telegram 
+                  type: group 
+                  required: true
+                - name: Saas 
+                  type: group 
+                  required: true
+                - name: RefreshCve 
+                  type: bool 
+                  required: true
+                - name: ToSlack 
+                  type: bool 
+                  required: true
+                - name: ToStride 
+                  type: bool 
+                  required: true
+                - name: ToHipChat 
+                  type: bool 
+                  required: true
+                - name: ToChatWork 
+                  type: bool 
+                  required: true
+                - name: ToTelegram 
+                  type: bool 
+                  required: true
+                - name: ToEmail 
+                  type: bool 
+                  required: true
+                - name: ToSyslog 
+                  type: bool 
+                  required: true
+                - name: ToLocalFile 
+                  type: bool 
+                  required: true
+                - name: ToS3 
+                  type: bool 
+                  required: true
+                - name: ToAzureBlob 
+                  type: bool 
+                  required: true
+                - name: ToSaas 
+                  type: bool 
+                  required: true
+                - name: ToHTTP 
+                  type: bool 
+                  required: true
+                - name: FormatXML 
+                  type: bool 
+                  required: true
+                - name: FormatJSON 
+                  type: bool 
+                  required: true
+                - name: FormatOneEmail 
+                  type: bool 
+                  required: true
+                - name: FormatOneLineText 
+                  type: bool 
+                  required: true
+                - name: FormatList 
+                  type: bool 
+                  required: true
+                - name: FormatFullText 
+                  type: bool 
+                  required: true
+                - name: FormatCsvList 
+                  type: bool 
+                  required: true
+                - name: GZIP 
+                  type: bool 
+                  required: true
+                - name: Diff 
+                  type: bool 
+                  required: true
+                - name: WpIgnoreInactive 
+                  type: bool 
+                  required: true
+            - name: Report 
+              type: group
+              required: true
+              fields:

@@ -49,7 +49,8 @@ func (bt *vulsbeat) Run(b *beat.Beat) error {
 
 	files := dirwalk("/home/a/vuls/results/")
 
-	results := models.ScanResults{}
+	ticker := time.NewTicker(bt.config.Period)
+	for {
 	for _, file := range files {
 		raw, err := ioutil.ReadFile(file)
  	    if err != nil {
@@ -60,11 +61,6 @@ func (bt *vulsbeat) Run(b *beat.Beat) error {
     	var result models.ScanResult 
     	json.Unmarshal(raw, &result)
 
-		results = append(results, result)
-	}
-
-	ticker := time.NewTicker(bt.config.Period)
-	for {
 		select {
 		case <-bt.done:
 			return nil
@@ -75,13 +71,13 @@ func (bt *vulsbeat) Run(b *beat.Beat) error {
 			Timestamp: time.Now(),
 			Fields: common.MapStr{
 				"type":    b.Info.Name,
-			"lang": "japanese",
-				"results": results,
+				"result": result,
 			},
 		}
 		bt.client.Publish(event)
 		logp.Info("Event sent")
-	}
+	}}
+
 }
 
 // Stop stops vulsbeat.
