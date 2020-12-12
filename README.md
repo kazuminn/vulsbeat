@@ -1,6 +1,6 @@
-# {Beat}
+# vulsbeat
 
-Welcome to {Beat}.
+Welcome to vulsbeat.
 
 Ensure that this folder is at the following location:
 `${GOPATH}/src/github.com/kazuminn/vulsbeat`
@@ -12,7 +12,7 @@ Ensure that this folder is at the following location:
 * [Golang](https://golang.org/dl/) 1.7
 
 ### Init Project
-To get running with {Beat} and also install the
+To get running with vulsbeat and also install the
 dependencies, run the following command:
 
 ```
@@ -32,7 +32,7 @@ For further development, check out the [beat developer guide](https://www.elasti
 
 ### Build
 
-To build the binary for {Beat} run the command below. This will generate a binary
+To build the binary for vulsbeat run the command below. This will generate a binary
 in the same directory with the name vulsbeat.
 
 ```
@@ -42,7 +42,7 @@ make
 
 ### Run
 
-To run {Beat} with debugging output enabled, run:
+To run vulsbeat with debugging output enabled, run:
 
 ```
 ./vulsbeat -c vulsbeat.yml -e -d "*"
@@ -51,7 +51,7 @@ To run {Beat} with debugging output enabled, run:
 
 ### Test
 
-To test {Beat}, run the following command:
+To test vulsbeat, run the following command:
 
 ```
 make testsuite
@@ -79,7 +79,7 @@ make update
 
 ### Cleanup
 
-To clean  {Beat} source code, run the following command:
+To clean  vulsbeat source code, run the following command:
 
 ```
 make fmt
@@ -94,7 +94,7 @@ make clean
 
 ### Clone
 
-To clone {Beat} from the git repository, run the following commands:
+To clone vulsbeat from the git repository, run the following commands:
 
 ```
 mkdir -p ${GOPATH}/src/github.com/kazuminn/vulsbeat
