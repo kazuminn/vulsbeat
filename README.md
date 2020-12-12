@@ -17,6 +17,14 @@ Ensure that this folder is at the following location:
 * [vuls](https://github.com/future-architect/vuls) v0.13.9 later
 * [mage](https://github.com/magefile/mage)
 
+### Config
+
+change path: in vulsbeat.yml.
+
+```
+path: "/path/to/results/"
+```
+
 ### Init Project
 To get running with vulsbeat and also install the
 dependencies, run the following command:
