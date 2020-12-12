@@ -35,7 +35,7 @@ make setup
 
 It will create a clean git history for each major step. Note that you can always rewrite the history if you wish before pushing your changes.
 
-To push {Beat} in the git repository, run the following commands:
+To push vulsbeat in the git repository, run the following commands:
 
 ```
 git remote set-url origin https://github.com/kazuminn/vulsbeat
