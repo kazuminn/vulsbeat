@@ -47,10 +47,8 @@ func (bt *vulsbeat) Run(b *beat.Beat) error {
 		return err
 	}
 
-
-
 	results := models.ScanResults{}
-	for _, file := range bt.getJSONFiles() {
+	for _, file := range bt.getJSONFileNames() {
 		raw, err := ioutil.ReadFile(file)
 		if err != nil {
 			fmt.Println(err.Error())
@@ -73,10 +71,10 @@ func (bt *vulsbeat) Run(b *beat.Beat) error {
 	bt.client.Publish(event)
 	logp.Info("Event sent")
 
-		select {
-		case <-bt.done:
-			return nil
-		}
+	select {
+	case <-bt.done:
+		return nil
+	}
 }
 
 // Stop stops vulsbeat.
@@ -98,7 +96,7 @@ func (bt *vulsbeat) dirwalk(dir string) []string {
 
 	return paths
 }
-func (bt *vulsbeat) getJSONFiles() []string {
+func (bt *vulsbeat) getJSONFileNames() []string {
 	jsonDirs := bt.dirwalk(bt.config.Path)
 
 	var jsonFiles []string
