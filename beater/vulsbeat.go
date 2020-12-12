@@ -1,19 +1,19 @@
 package beater
 
 import (
-	"fmt"
-	"time"
-	"io/ioutil"
-	"path/filepath"
-	"os"
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"os"
+	"path/filepath"
+	"time"
 
 	"github.com/elastic/beats/v7/libbeat/beat"
 	"github.com/elastic/beats/v7/libbeat/common"
 	"github.com/elastic/beats/v7/libbeat/logp"
 
-	"github.com/kazuminn/vulsbeat/config"
 	"github.com/future-architect/vuls/models"
+	"github.com/kazuminn/vulsbeat/config"
 )
 
 // vulsbeat configuration.
@@ -47,40 +47,37 @@ func (bt *vulsbeat) Run(b *beat.Beat) error {
 		return err
 	}
 
-	files := dirwalk("/home/a/vuls/results/")
+	files := bt.dirwalk(bt.config.Paths)
 
 	results := models.ScanResults{}
 	for _, file := range files {
 		raw, err := ioutil.ReadFile(file)
- 	    if err != nil {
-    	    fmt.Println(err.Error())
-        	os.Exit(1)
-    	}
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
 
-    	var result models.ScanResult 
-    	json.Unmarshal(raw, &result)
+		var result models.ScanResult
+		json.Unmarshal(raw, &result)
 
 		results = append(results, result)
 	}
 
-	ticker := time.NewTicker(bt.config.Period)
+	event := beat.Event{
+		Timestamp: time.Now(),
+		Fields: common.MapStr{
+			"type":    b.Info.Name,
+			"results": results,
+		},
+	}
+	bt.client.Publish(event)
+	logp.Info("Event sent")
+
 	for {
 		select {
 		case <-bt.done:
 			return nil
-		case <-ticker.C:
 		}
-
-		event := beat.Event{
-			Timestamp: time.Now(),
-			Fields: common.MapStr{
-				"type":    b.Info.Name,
-			"lang": "japanese",
-				"results": results,
-			},
-		}
-		bt.client.Publish(event)
-		logp.Info("Event sent")
 	}
 }
 
@@ -90,21 +87,23 @@ func (bt *vulsbeat) Stop() {
 	close(bt.done)
 }
 
-func dirwalk(dir string) []string {
-    files, err := ioutil.ReadDir(dir)
-    if err != nil {
-        panic(err)
+func (bt *vulsbeat) dirwalk(dir string) []string {
+	files, err := ioutil.ReadDir(bt.config.Paths)
+	if err != nil {
+		panic(err)
 	}
-	
 
-    var paths []string
-    for _, file := range files {
-        if file.IsDir() {
-            paths = append(paths, dirwalk(filepath.Join(dir, file.Name()))...)
-            continue
-        }
-        paths = append(paths, filepath.Join(dir, file.Name()))
-    }
+	var paths []string
+	for _, file := range files {
+		if file.IsDir() {
+			if file.Name() == filepath.Join(bt.config.Paths, "current") {
+				continue
+			}
+			paths = append(paths, bt.dirwalk(filepath.Join(dir, file.Name()))...)
+			continue
+		}
+		paths = append(paths, filepath.Join(dir, file.Name()))
+	}
 
-    return paths
+	return paths
 }

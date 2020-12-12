@@ -9174,13 +9174,6 @@ alias to: process.executable
 None
 
 
-*`lang`*::
-+
---
-type: keyword
-
---
-
 *`results`*::
 +
 --

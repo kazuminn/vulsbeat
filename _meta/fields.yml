@@ -2,8 +2,6 @@
   title: vulsbeat
   description:
   fields:
-    - name: lang  
-      type: keyword 
     - name: results 
       type: nested 
       required: true
