@@ -9,7 +9,7 @@ You can do various things with elasticsearch. For example, analyze or detect com
 Ensure that this folder is at the following location:
 `${GOPATH}/src/github.com/kazuminn/vulsbeat`
 
-## Getting Started with {Beat}
+## Getting Started with vulsbeat
 
 ### Requirements
 
